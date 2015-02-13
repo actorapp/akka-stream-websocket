@@ -2,7 +2,7 @@ name := "akka-stream-websocket"
 
 organization  := "pt"
 
-version       := "0.1"
+version       := "0.1-SNAPSHOT"
 
 scalaVersion  := "2.11.5"
 
@@ -34,3 +34,11 @@ libraryDependencies ++= {
 net.virtualvoid.sbt.graph.Plugin.graphSettings
 
 seq(Revolver.settings: _*)
+
+credentials += Credentials(Path.userHome / ".ivy2" / ".credentials")
+
+publishTo <<= (version) { version: String =>
+  Some("private nexus" at "http://repos.81port.com/nexus/content/repositories/snapshots")
+}
+
+publishMavenStyle := true
